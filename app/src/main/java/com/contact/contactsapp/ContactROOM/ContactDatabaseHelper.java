@@ -8,7 +8,7 @@ import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
 
-@Database(entities = ContactEntity.class,exportSchema = false,version = 1)
+@Database(entities = ContactEntity.class,exportSchema = false,version = 177)
 public abstract class ContactDatabaseHelper extends RoomDatabase {
 
     private static final String DB_NAME = "contactDB";
@@ -19,13 +19,18 @@ public abstract class ContactDatabaseHelper extends RoomDatabase {
         if(instance == null)
         {
             instance = Room.databaseBuilder(context,ContactDatabaseHelper.class,DB_NAME)
+                    .allowMainThreadQueries()
                     .fallbackToDestructiveMigration() //not planning on updating database schema anytime soon
                     .build();
         }
 
         return instance;
     }
-    public abstract ContactDAO methodContactDao();
+
+    public static ContactDAO contactDB() //not sure what it does,just copied it.Want to explain it, be my guest
+    {
+        return null;
+    }
 
 }
 

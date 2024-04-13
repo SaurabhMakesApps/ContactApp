@@ -11,6 +11,8 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.contact.contactsapp.ContactROOM.ContactEntity;
+
 import org.w3c.dom.Text;
 
 import java.util.ArrayList;
@@ -19,8 +21,8 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ContactV
 //Adapter acts as a machine connecting AdapterViews with data
 {
 Context context;
-ArrayList<ContactModel> listOfContacts;
-    public ContactAdapter(Context context,ArrayList<ContactModel> listOfContacts)
+ArrayList<ContactEntity> listOfContacts;
+    public ContactAdapter(Context context,ArrayList<ContactEntity> listOfContacts)
     {
         this.context = context;
         this.listOfContacts = listOfContacts;
@@ -36,9 +38,9 @@ ArrayList<ContactModel> listOfContacts;
 
     @Override
     public void onBindViewHolder(@NonNull ContactViewHolder holder, int position) {
-          holder.contactImage.setImageResource(listOfContacts.get(position).image);
-          holder.contactName.setText(listOfContacts.get(position).name);
-          holder.contactNumber.setText(listOfContacts.get(position).number);
+//          holder.contactImage.setImageResource(listOfContacts.get(position).image); //how to set image
+          holder.contactName.setText(listOfContacts.get(position).getContactName());
+          holder.contactNumber.setText(listOfContacts.get(position).getContactNumber());
     }
 
     @Override

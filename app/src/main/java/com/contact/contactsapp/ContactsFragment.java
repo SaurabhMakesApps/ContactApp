@@ -11,7 +11,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.contact.contactsapp.ContactROOM.ContactDatabaseHelper;
+import com.contact.contactsapp.ContactROOM.ContactEntity;
+
 import java.util.ArrayList;
+
 
 public class ContactsFragment extends Fragment {
 
@@ -22,10 +26,13 @@ public class ContactsFragment extends Fragment {
 
 
     Context thiscontext;
-ArrayList<ContactModel> contactList = new ArrayList<>();
+ArrayList<ContactEntity> contactList = new ArrayList<>();
 RecyclerView recyclerView;
 
         View view;
+//        ContactDatabaseHelper.contactDB().AddContact(new ContactEntity("Saurabh","939393939"));
+//        ContactDatabaseHelper.contactDB().AddContact(new ContactEntity("Tushar","828282828"));
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -37,20 +44,24 @@ RecyclerView recyclerView;
          recyclerView = view.findViewById(R.id.contactsrecycler);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        //test data, will be fetching data from local storage through ROOM
-//         contactList.add(new ContactModel("Saurabh","99999"));
-//         contactList.add((new ContactModel("Tushar","686868686")));
-//        contactList.add((new ContactModel("Tushar","686868686")));
-//        contactList.add((new ContactModel("Tushar","686868686")));
-//        contactList.add((new ContactModel("Tushar","686868686"))); contactList.add((new ContactModel("Tushar","686868686")));
-
-        //
 
 
+ContactDatabaseHelper database_object = ContactDatabaseHelper.getDb(thiscontext);
 
-        ContactAdapter contactAdapter = new ContactAdapter(getContext(),contactList);
+        assert ContactDatabaseHelper.contactDB() != null;
+        ContactDatabaseHelper.contactDB().AddContact(new ContactEntity("Saurabh","939393939"));
+//        ContactDatabaseHelper.contactDB().AddContact(new ContactEntity("Tushar","828282828"));
+//
+//        // Now,data will be fetched from the database,no need of ContactModel class
+//        ArrayList<ContactEntity> contacts = (ArrayList<ContactEntity>)ContactDatabaseHelper.contactDB().importantColumnsfromContacts();
+//
+////        ContactAdapter contactAdapter = new ContactAdapter(getContext(),contacts);
+//        ContactDatabaseHelper.contactDB().AddContact(new ContactEntity("Saurabh","939393939"));
+//        ContactDatabaseHelper.contactDB().AddContact(new ContactEntity("Tushar","828282828"));
 
-         recyclerView.setAdapter(contactAdapter);
+////
+////        ArrayList<ContactEntity> data = ArrayList<ContactEntity>
+//        recyclerView.setAdapter(contactAdapter);
         return view;
     }
 }

@@ -2,6 +2,7 @@ package com.contact.contactsapp;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 
 import androidx.activity.EdgeToEdge;
@@ -15,7 +16,11 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.contact.contactsapp.ContactROOM.ContactDatabaseHelper;
+import com.contact.contactsapp.ContactROOM.ContactEntity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -30,7 +35,6 @@ public class MainActivity extends AppCompatActivity {
         FragmentTransaction ft = fm.beginTransaction();
 
         BottomNavigationView bottomNavigation = findViewById(R.id.myBottomNavigationView);
-
 
        bottomNavigation.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
            @Override
