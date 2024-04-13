@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">ContactApp</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="splash_text_upper">Contacts App</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+
+</resources>

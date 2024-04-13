@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<item
+    android:title="Login"
+    android:id="@+id/login"
+    android:icon="@drawable/login"/>
+
+    <item
+    android:title="Database"
+    android:id="@+id/database"
+    android:icon="@drawable/database"/>
+
+    <item
+        android:title="Chat"
+        android:id="@+id/chat"
+        android:icon="@drawable/chat"/>
+
+    <item
+        android:title="images"
+        android:id="@+id/images"
+        android:icon="@drawable/image"/>
+
+    <item
+        android:title="Contacts"
+        android:id="@+id/frag_5"
+        android:icon="@drawable/add_contact"/>
+
+</menu>

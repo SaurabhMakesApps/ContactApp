@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:background="#C4FF5100"
+    tools:context=".ContactsAppSplashScreen">
+<TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="@string/splash_text_upper"
+    android:textSize="50sp"
+    android:id="@+id/myTextView"
+    android:textStyle="bold"
+    android:fontFamily="@font/app_new_font"
+    android:layout_marginBottom="30sp"/>
+<!--<ImageView-->
+<!--    android:layout_width="200sp"-->
+<!--    android:layout_height="200sp"-->
+<!--    android:id="@+id/myimageView"-->
+<!--    android:requiresFadingEdge="vertical"-->
+<!--android:scaleType="centerCrop"-->
+<!--    android:fadingEdge="horizontal"-->
+<!--    android:src="@drawable/contactsplash"/>-->
+    <com.airbnb.lottie.LottieAnimationView
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        app:lottie_rawRes="@raw/bear"
+        app:lottie_autoPlay="true"
+        android:id="@+id/splash_lottie"
+        app:lottie_loop="true"
+        />
+
+
+
+</LinearLayout>
