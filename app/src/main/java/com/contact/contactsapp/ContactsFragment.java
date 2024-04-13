@@ -50,18 +50,13 @@ ContactDatabaseHelper database_object = ContactDatabaseHelper.getDb(thiscontext)
 
 
         database_object.contactDB().AddContact(new ContactEntity("Saurabh","939393939"));
-//        ContactDatabaseHelper.contactDB().AddContact(new ContactEntity("Tushar","828282828"));
-//
-//        // Now,data will be fetched from the database,no need of ContactModel class
-//        ArrayList<ContactEntity> contacts = (ArrayList<ContactEntity>)ContactDatabaseHelper.contactDB().importantColumnsfromContacts();
-//
-////        ContactAdapter contactAdapter = new ContactAdapter(getContext(),contacts);
-//        ContactDatabaseHelper.contactDB().AddContact(new ContactEntity("Saurabh","939393939"));
-//        ContactDatabaseHelper.contactDB().AddContact(new ContactEntity("Tushar","828282828"));
 
-////
-////        ArrayList<ContactEntity> data = ArrayList<ContactEntity>
-//        recyclerView.setAdapter(contactAdapter);
+
+        ArrayList<ContactEntity> contacts = (ArrayList<ContactEntity>) database_object.contactDB().getAllColumnsFromContacts();
+
+       ContactAdapter contactAdapter = new ContactAdapter(getContext(),contacts);
+
+        recyclerView.setAdapter(contactAdapter);
         return view;
     }
 }

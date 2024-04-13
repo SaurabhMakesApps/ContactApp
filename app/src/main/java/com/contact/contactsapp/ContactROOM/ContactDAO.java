@@ -19,7 +19,6 @@ public interface ContactDAO
     List<ContactEntity> getAllColumnsFromContacts();
 
 
-
     @Update
     void updateContact(ContactEntity contact);
 
