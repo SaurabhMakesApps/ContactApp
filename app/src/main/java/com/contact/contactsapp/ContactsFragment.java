@@ -48,8 +48,8 @@ RecyclerView recyclerView;
 
 ContactDatabaseHelper database_object = ContactDatabaseHelper.getDb(thiscontext);
 
-        assert ContactDatabaseHelper.contactDB() != null;
-        ContactDatabaseHelper.contactDB().AddContact(new ContactEntity("Saurabh","939393939"));
+
+        database_object.contactDB().AddContact(new ContactEntity("Saurabh","939393939"));
 //        ContactDatabaseHelper.contactDB().AddContact(new ContactEntity("Tushar","828282828"));
 //
 //        // Now,data will be fetched from the database,no need of ContactModel class

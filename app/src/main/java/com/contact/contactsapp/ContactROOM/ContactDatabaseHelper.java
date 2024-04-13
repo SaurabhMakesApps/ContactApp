@@ -19,18 +19,16 @@ public abstract class ContactDatabaseHelper extends RoomDatabase {
         if(instance == null)
         {
             instance = Room.databaseBuilder(context,ContactDatabaseHelper.class,DB_NAME)
-                    .allowMainThreadQueries()
-                    .fallbackToDestructiveMigration() //not planning on updating database schema anytime soon
+                    .fallbackToDestructiveMigration()
+                    .allowMainThreadQueries()//not planning on updating database schema anytime soon
                     .build();
         }
 
         return instance;
     }
 
-    public static ContactDAO contactDB() //not sure what it does,just copied it.Want to explain it, be my guest
-    {
-        return null;
-    }
+    public abstract ContactDAO contactDB();//not sure what it does,just copied it.Want to explain it, be my guest
+
 
 }
 
