@@ -1,50 +1,70 @@
-//package com.contact.contactsapp;
-//
-//import android.view.LayoutInflater;
-//import android.view.View;
-//import android.view.ViewGroup;
-//
-//import androidx.annotation.NonNull;
-//import androidx.recyclerview.widget.RecyclerView;
-//
-//import java.util.ArrayList;
-//
-//public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ViewHolder> {
-//
-//    private ArrayList<ContactModel> contactsList;
-//
-//    // Constructor to initialize the adapter with a list of contacts
-//    public ContactAdapter(ArrayList<ContactModel> contactsList) {
-//        this.contactsList = contactsList;
-//    }
-//
-//    // ViewHolder class to hold the views for each item in the RecyclerView
-//    public static class ViewHolder extends RecyclerView.ViewHolder {
-//        // Views for each item
-//        public ViewHolder(@NonNull View itemView) {
-//            super(itemView);
-//            // Initialize views here if needed
-//        }
-//    }
-//
-//    @NonNull
-//    @Override
-//    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-//        // Inflate the layout for each item
-//        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_contact, parent, false);
-//        // Create a new ViewHolder instance
-//        return new ViewHolder(view);
-//    }
-//
-//    @Override
-//    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-//        // Bind data to views in each item
-//        // Example: holder.textView.setText(contactsList.get(position).getName());
-//    }
-//
-//    @Override
-//    public int getItemCount() {
-//        // Return the size of the contacts list
-//        return contactsList.size();
-//    }
-//}
+package com.contact.contactsapp;
+
+import android.content.Context;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
+
+import org.w3c.dom.Text;
+
+import java.util.ArrayList;
+
+public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ContactViewHolder>
+//Adapter acts as a machine connecting AdapterViews with data
+{
+Context context;
+ArrayList<ContactModel> listOfContacts;
+    public ContactAdapter(Context context,ArrayList<ContactModel> listOfContacts)
+    {
+        this.context = context;
+        this.listOfContacts = listOfContacts;
+    }
+
+    @NonNull
+    @Override
+    public ContactViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+
+        View contactCard = LayoutInflater.from(context).inflate(R.layout.contact_item_layout,parent,false);
+        return new ContactViewHolder(contactCard);
+    }
+
+    @Override
+    public void onBindViewHolder(@NonNull ContactViewHolder holder, int position) {
+          holder.contactImage.setImageResource(listOfContacts.get(position).image);
+          holder.contactName.setText(listOfContacts.get(position).name);
+          holder.contactNumber.setText(listOfContacts.get(position).number);
+    }
+
+    @Override
+    public int getItemCount() {
+        return listOfContacts.size();
+    }
+
+    public class ContactViewHolder extends RecyclerView.ViewHolder {
+        ImageView contactImage;
+        TextView contactName;
+        TextView contactNumber;
+        public ContactViewHolder(@NonNull View itemView) {
+            super(itemView);
+
+            contactImage = itemView.findViewById(R.id.contactImage);
+            contactName = itemView.findViewById(R.id.contactName);
+            contactNumber = itemView.findViewById(R.id.contactNumber);
+            Context context1;
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    //this method will handle what we want to do when we click an item
+                    Toast.makeText(itemView.getContext(), "Item clicked", Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
+    }
+}
