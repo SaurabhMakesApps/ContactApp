@@ -15,13 +15,13 @@ public interface ContactDAO
     @Insert
     void AddContact(ContactEntity contact);
 
-    @Query("select*from contacts")
-    List<ContactEntity> getAllColumnsFromContacts();
+    @Query("select * from contacts")
+    List<ContactEntity>getAllColumnsFromContacts();
 
 
     @Update
     void updateContact(ContactEntity contact);
 
     @Delete
-    void deleteContact(ContactEntity delete);
+    void deleteContact(ContactEntity contact);
 }

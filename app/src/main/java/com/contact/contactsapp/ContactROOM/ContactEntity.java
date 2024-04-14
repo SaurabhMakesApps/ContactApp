@@ -9,8 +9,8 @@ import androidx.room.PrimaryKey;
 @Entity(tableName="contacts")
 public class ContactEntity {
 
-    @ColumnInfo(name = "contactImage")
-    private byte[] contactImage;
+//    @ColumnInfo(name = "contactImage")
+//    private byte[] contactImage;
 
     @PrimaryKey(autoGenerate = true)
     private int id;
@@ -23,35 +23,43 @@ public class ContactEntity {
     @ColumnInfo(name = "contactNumber")
     private String contactNumber;
 
-    @ColumnInfo(name = "contactEmail")
-    private String email_id;
+//    @ColumnInfo(name = "contactEmail")
+//    private String email_id;
 
 
-    public ContactEntity(int id,byte[] contactImage, @NonNull String contactName, @NonNull String contactNumber, String email_id) {
-        this.id = id;
-        this.contactImage = contactImage;
-        this.contactName = contactName;
-        this.contactNumber = contactNumber;
-        this.email_id = email_id;
-    }
-
-
+//    public ContactEntity(int id,byte[] contactImage,  String contactName,  String contactNumber, String email_id) {
+//        this.id = id;
+//        this.contactImage = contactImage;
+//        this.contactName = contactName;
+//        this.contactNumber = contactNumber;
+//        this.email_id = email_id;
+//    }
+@Ignore
+public ContactEntity(int id)
+{
+    this.id = id;
+}
 
     @Ignore
-    public ContactEntity(String contactName, String contactNumber) {
+    public ContactEntity(  String contactName,  String contactNumber) {
 
         this.contactName = contactName;
         this.contactNumber = contactNumber;
+        this.id = 0;
+    }
+    public ContactEntity()
+    {
+
     }
 
 
-    public byte[] getContactImage() {
-        return contactImage;
-    }
-
-    public void setContactImage(byte[] contactImage) {
-        this.contactImage = contactImage;
-    }
+//    public byte[] getContactImage() {
+//        return contactImage;
+//    }
+//
+//    public void setContactImage(byte[] contactImage) {
+//        this.contactImage = contactImage;
+//    }
 
     public int getId() {
         return id;
@@ -61,7 +69,7 @@ public class ContactEntity {
         this.id = id;
     }
 
-    @NonNull
+
     public String getContactName() {
         return contactName;
     }
@@ -79,11 +87,11 @@ public class ContactEntity {
         this.contactNumber = contactNumber;
     }
 
-    public String getEmail_id() {
-        return email_id;
-    }
-
-    public void setEmail_id(String email_id) {
-        this.email_id = email_id;
-    }
+//    public String getEmail_id() {
+//        return email_id;
+//    }
+//
+//    public void setEmail_id(String email_id) {
+//        this.email_id = email_id;
+//    }
 }
