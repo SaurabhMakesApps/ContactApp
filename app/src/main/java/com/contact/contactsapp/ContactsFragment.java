@@ -8,6 +8,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -70,12 +72,14 @@ public class ContactsFragment extends Fragment implements View.OnClickListener {
        });
 
 
+
         ContactDatabaseHelper database_object = ContactDatabaseHelper.getDb(thiscontext);
 
 
         ArrayList<ContactEntity> contacts = (ArrayList<ContactEntity>) database_object.contactDB().getAllColumnsFromContacts();
 
         ContactAdapter contactAdapter = new ContactAdapter(getContext(), contacts);
+
 
         recyclerView.setAdapter(contactAdapter);
         return view;

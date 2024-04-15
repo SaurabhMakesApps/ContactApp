@@ -22,6 +22,6 @@ public interface ContactDAO
     @Update
     void updateContact(ContactEntity contact);
 
-    @Delete
-    void deleteContact(ContactEntity contact);
+    @Query("DELETE FROM contacts")
+    void deleteAllContacts(); // Method to delete all contacts from the table
 }
