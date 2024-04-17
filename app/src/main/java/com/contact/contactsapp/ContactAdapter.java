@@ -1,6 +1,8 @@
 package com.contact.contactsapp;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,17 +15,14 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.contact.contactsapp.ContactROOM.ContactEntity;
 
-import org.w3c.dom.Text;
-
 import java.util.ArrayList;
 
-public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ContactViewHolder>
-//Adapter acts as a machine connecting AdapterViews with data
-{
-Context context;
-ArrayList<ContactEntity> listOfContacts;
-    public ContactAdapter(Context context,ArrayList<ContactEntity> listOfContacts)
-    {
+public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ContactViewHolder> {
+
+    private Context context;
+    private ArrayList<ContactEntity> listOfContacts;
+
+    public ContactAdapter(Context context, ArrayList<ContactEntity> listOfContacts) {
         this.context = context;
         this.listOfContacts = listOfContacts;
     }
@@ -31,16 +30,14 @@ ArrayList<ContactEntity> listOfContacts;
     @NonNull
     @Override
     public ContactViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-
-        View contactCard = LayoutInflater.from(context).inflate(R.layout.contact_item_layout,parent,false);
+        View contactCard = LayoutInflater.from(context).inflate(R.layout.contact_item_layout, parent, false);
         return new ContactViewHolder(contactCard);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ContactViewHolder holder, int position) {
-//          holder.contactImage.setImageResource(listOfContacts.get(position).image); //how to set image
-          holder.contactName.setText(listOfContacts.get(position).getContactName());
-          holder.contactNumber.setText(listOfContacts.get(position).getContactNumber());
+        ContactEntity contact = listOfContacts.get(position);
+        holder.bind(contact);
     }
 
     @Override
@@ -49,24 +46,44 @@ ArrayList<ContactEntity> listOfContacts;
     }
 
     public class ContactViewHolder extends RecyclerView.ViewHolder {
-        ImageView contactImage;
-        TextView contactName;
-        TextView contactNumber;
+
+        private ImageView contactImage;
+        private TextView contactName;
+        private TextView contactNumber;
+
         public ContactViewHolder(@NonNull View itemView) {
             super(itemView);
 
             contactImage = itemView.findViewById(R.id.contactImage);
             contactName = itemView.findViewById(R.id.contactName);
             contactNumber = itemView.findViewById(R.id.contactNumber);
-            Context context1;
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    //this method will handle what we want to do when we click an item
-                    Toast.makeText(itemView.getContext(), "Item clicked", Toast.LENGTH_SHORT).show();
+                    // Handle item click
+                    int position = getAdapterPosition();
+                    if (position != RecyclerView.NO_POSITION) {
+                        ContactEntity clickedContact = listOfContacts.get(position);
+                        // You can perform an action when a contact is clicked
+                        Toast.makeText(context, "Clicked: " + clickedContact.getContactName(), Toast.LENGTH_SHORT).show();
+                    }
                 }
             });
+        }
+
+        public void bind(ContactEntity contact) {
+            // Set data to views
+            byte[] imageBytes = contact.getImageBytes();
+            if (imageBytes != null) {
+                Bitmap bitmap = BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.length);
+                contactImage.setImageBitmap(bitmap);
+            } else {
+                // If no image is available, you can set a placeholder image or hide the ImageView
+                contactImage.setImageResource(R.drawable.contact_image_placeholder);
+            }
+            contactName.setText(contact.getContactName());
+            contactNumber.setText(contact.getContactNumber());
         }
     }
 }

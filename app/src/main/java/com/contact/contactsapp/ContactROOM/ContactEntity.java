@@ -9,57 +9,34 @@ import androidx.room.PrimaryKey;
 @Entity(tableName="contacts")
 public class ContactEntity {
 
-//    @ColumnInfo(name = "contactImage")
-//    private byte[] contactImage;
-
     @PrimaryKey(autoGenerate = true)
     private int id;
 
+    @ColumnInfo(typeAffinity = ColumnInfo.BLOB)
+    private byte[] imageData;
 
     @ColumnInfo(name = "contactName")
     private String contactName;
 
-
     @ColumnInfo(name = "contactNumber")
     private String contactNumber;
 
-//    @ColumnInfo(name = "contactEmail")
-//    private String email_id;
-
-
-//    public ContactEntity(int id,byte[] contactImage,  String contactName,  String contactNumber, String email_id) {
-//        this.id = id;
-//        this.contactImage = contactImage;
-//        this.contactName = contactName;
-//        this.contactNumber = contactNumber;
-//        this.email_id = email_id;
-//    }
-@Ignore
-public ContactEntity(int id)
-{
-    this.id = id;
-}
-
     @Ignore
-    public ContactEntity(  String contactName,  String contactNumber) {
+    public ContactEntity(int id) {
+        this.id = id;
+    }
 
+    public ContactEntity(byte[] imageData, String contactName, String contactNumber) {
+        this.imageData = imageData;
         this.contactName = contactName;
         this.contactNumber = contactNumber;
         this.id = 0;
     }
-    public ContactEntity()
-    {
-
+@Ignore
+    public ContactEntity(String contactName, String contactNumber) {
+        this.contactName = contactName;
+        this.contactNumber = contactNumber;
     }
-
-
-//    public byte[] getContactImage() {
-//        return contactImage;
-//    }
-//
-//    public void setContactImage(byte[] contactImage) {
-//        this.contactImage = contactImage;
-//    }
 
     public int getId() {
         return id;
@@ -69,6 +46,13 @@ public ContactEntity(int id)
         this.id = id;
     }
 
+    public byte[] getImageData() {
+        return imageData;
+    }
+
+    public void setImageData(byte[] imageData) {
+        this.imageData = imageData;
+    }
 
     public String getContactName() {
         return contactName;
@@ -78,7 +62,6 @@ public ContactEntity(int id)
         this.contactName = contactName;
     }
 
-
     public String getContactNumber() {
         return contactNumber;
     }
@@ -87,11 +70,8 @@ public ContactEntity(int id)
         this.contactNumber = contactNumber;
     }
 
-//    public String getEmail_id() {
-//        return email_id;
-//    }
-//
-//    public void setEmail_id(String email_id) {
-//        this.email_id = email_id;
-//    }
+    // Method to retrieve image byte array
+    public byte[] getImageBytes() {
+        return imageData;
+    }
 }
